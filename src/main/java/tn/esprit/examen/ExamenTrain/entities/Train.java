@@ -1,5 +1,6 @@
 package tn.esprit.examen.ExamenTrain.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -25,10 +26,13 @@ Date dateArrivee;
 Double heureDepart;
 Double heureArrivee;
 int nbPlaceLibre;
+@JsonIgnore
 @ManyToOne
     Gare vient;
+@JsonIgnore
 @ManyToOne
     Gare vaVers;
+@JsonIgnore
 @OneToMany(mappedBy = "train")
     Set<Client> clients;
 }

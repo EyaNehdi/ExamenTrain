@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.examen.ExamenTrain.entities.Train;
 import tn.esprit.examen.ExamenTrain.services.ITrainService;
 
+import java.util.List;
+
 @Tag(name = "\uD83D\uDCDA Train Management")
 @RestController
 @RequestMapping("train")
@@ -20,5 +22,13 @@ public class TrainRestController {
 @PutMapping("/affecterTrainAGare/{idTrain}/{idGareDepart}/{idGareArrivee}")
     public void affecterTrainAGare(@PathVariable("idTrain") Long idTrain,@PathVariable("idGareDepart") Long idGareDepart,@PathVariable("idGareArrivee") Long idGareArrivee){
         trainService.affecterTrainAGare(idTrain,idGareDepart,idGareArrivee);
+    }
+//@GetMapping("/getAvgTrainByNbPlaceLibre/{idGareDepart}")
+//    public int TrainPlacesLibres(@PathVariable("idGareDepart") Long idGareDepart){
+//       return trainService.TrainPlacesLibres(idGareDepart);
+//    }
+@GetMapping("/getTrainIndirects/{idGareDepart}/{idGareArrivee}")
+    public List<Train> ListerTrainsIndirects(@PathVariable("idGareDepart") Long idGareDepart,@PathVariable("idGareArrivee") Long idGareArrivee){
+        return trainService.ListerTrainsIndirects(idGareDepart,idGareArrivee);
     }
 }
